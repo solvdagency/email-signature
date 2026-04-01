@@ -14,12 +14,12 @@ echo ""
 # Asset URLs (GitHub-hosted)
 BASE_URL="https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG"
 LOGO_URL="${BASE_URL}/solvd%20logo%20black%402x.png"
-LINKEDIN_URL="${BASE_URL}/linkedin%402x.png"
-INSTAGRAM_URL="${BASE_URL}/instagram%402x.png"
+LINKEDIN_URL="${BASE_URL}/linkedin%404x.png"
+INSTAGRAM_URL="${BASE_URL}/instagram%404x.png"
 
 # Fixed values
 WEBSITE="solvdagency.com.au"
-INSTAGRAM_LINK="https://www.instagram.com/solvdagency/"
+INSTAGRAM_LINK="https://www.instagram.com/solvd_agency/"
 DISCLAIMER_URL="https://${WEBSITE}/disclaimer"
 
 # Collect user details
