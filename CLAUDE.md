@@ -8,6 +8,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 ## Project Structure
 ```
 .
+├── .claude/                        ← local Claude Code settings
 ├── generate-signature.command      ← v2 generator (current)
 ├── generate-signature-v1.command   ← v1 generator (archived)
 ├── preview-new-signature.html      ← design mockup (gitignored)
@@ -23,7 +24,8 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
     │   ├── instagram@4x.png
     │   ├── linkedin@4x.png
     │   ├── NTL@4x.png, SYD@4x.png, MCY@4x.png, ZQN@4x.png
-    │   └── email@4x.png
+    │   ├── email@4x.png
+    │   └── unused/                 ← extra resolutions & retired assets
     └── source/                     ← gitignored, design reference only
         ├── fonts/
         ├── SVG/
@@ -71,6 +73,18 @@ PNG images hosted on GitHub at:
 
 Tracked assets (in `Assets/PNG/`): logo @2x, sub-brand logos @4x, social icons @4x, location pills @4x, website URL @4x.
 Source files (fonts, SVGs, all logo resolutions) live in `Assets/source/` and are gitignored.
+
+## Maintenance
+- **Test changes**: Edit `generate-signature.command`, run it in Terminal, check the output HTML on Desktop and browser preview
+- **Rebuild zip**: `zip "Solvd Email Signature.zip" generate-signature.command "How to Use.txt"` — this is what gets distributed to staff
+- **Update assets**: Add new PNGs to `Assets/PNG/`, push to GitHub, then the raw URL serves them automatically
+- **Preview design**: Open `preview-new-signature.html` in a browser — this is a static mockup, not generated
+
+## Gotchas
+- **Filenames with spaces** — `solvd logo black@2x.png` requires `%20` URL-encoding in the script (see `LOGO_URL` variable)
+- **GitHub raw URL dependency** — all images load from `raw.githubusercontent.com`; if the repo is private or renamed, signatures break
+- **Email client rendering** — the template uses table-based HTML with inline styles; CSS classes, `<div>`, flexbox, and grid will not render in most email clients (Outlook, Gmail)
+- **Dark mode** — text is `#111` not `#000` for softer rendering; images with transparent backgrounds may need testing against dark backgrounds
 
 ## Git
 - Repo: `solvdagency/email-signature` on GitHub
