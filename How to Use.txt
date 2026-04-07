@@ -1,0 +1,53 @@
+SOLVD EMAIL SIGNATURE GENERATOR
+================================
+
+STEP 1: UNZIP (if needed)
+- If you received a .zip file, double-click it to unzip
+- You'll see a file called generate-signature.command
+
+STEP 2: ALLOW THE FILE TO RUN
+- Double-click generate-signature.command
+- macOS will show a warning and block it
+- Open System Settings > Privacy & Security
+- Scroll down — you'll see a message about generate-signature.command being blocked
+- Click "Allow Anyway"
+- Go back and double-click generate-signature.command again
+- Click "Open" when prompted
+- You only need to do this once
+
+STEP 3: FILL IN YOUR DETAILS
+A Terminal window will open and ask for your details:
+
+- Full name — type your name, press Enter
+- Title — e.g. "Group Consultant - Client Services", press Enter
+- Email — must be your @solvdagency.com.au address, press Enter
+- Phone — your mobile number starting with 04 (or leave blank to skip), press Enter
+- LinkedIn — by default this links to the Solvd company page.
+  Type 'y' if you want to use your personal LinkedIn URL instead.
+
+STEP 4: CHECK YOUR DETAILS
+- The script will show a summary of what you entered
+- Type Y (or just press Enter) to confirm
+- Type N to start over
+
+STEP 5: USE YOUR SIGNATURE
+- Your signature is saved to your Desktop and copied to your clipboard
+- A preview will open in your browser so you can check it
+
+For Gmail:
+  1. Open Gmail
+  2. Click the gear icon > See all settings
+  3. Scroll down to the Signature section
+  4. Click "Create new"
+  5. Paste (Cmd+V) into the signature box
+  6. Scroll down and click Save Changes
+
+For Apple Mail:
+  1. Open Mail > Settings > Signatures
+  2. Click the + to create a new signature
+  3. Open the HTML file from your Desktop in Safari
+  4. Select all (Cmd+A), copy (Cmd+C)
+  5. Paste into the Mail signature editor
+
+NEED HELP?
+Contact Liam.

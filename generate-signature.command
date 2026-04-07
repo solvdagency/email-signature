@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================================
-# Solvd Email Signature Generator
+# Solvd Email Signature Generator (v2)
 # Double-click this file to generate your email signature
 # ============================================================
 
@@ -14,71 +14,171 @@ echo ""
 # Asset URLs (GitHub-hosted)
 BASE_URL="https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG"
 LOGO_URL="${BASE_URL}/solvd%20logo%20black%402x.png"
-LINKEDIN_URL="${BASE_URL}/linkedin%404x.png"
-INSTAGRAM_URL="${BASE_URL}/instagram%404x.png"
+COMMS_URL="${BASE_URL}/solvd-comms%404x.png"
+CREATIVE_URL="${BASE_URL}/solvd-creative%404x.png"
+SHEPHERD_URL="${BASE_URL}/shepherd%404x.png"
+LINKEDIN_ICON_URL="${BASE_URL}/linkedin%404x.png"
+INSTAGRAM_ICON_URL="${BASE_URL}/instagram%404x.png"
 
 # Fixed values
 WEBSITE="solvdagency.com.au"
 INSTAGRAM_LINK="https://www.instagram.com/solvd_agency/"
+SHEPHERD_LINK="https://www.shepherdagency.com.au/"
 DISCLAIMER_URL="https://${WEBSITE}/disclaimer"
+DEFAULT_LINKEDIN="https://www.linkedin.com/company/solvd-agency"
 
-# Collect user details
-read -p "Your full name: " NAME
+# -----------------------------------------------------------
+# Collect user details with validation
+# -----------------------------------------------------------
+
+# Name
+read -p "Your full name (e.g. Georgia Bear): " NAME
+while [ -z "$NAME" ]; do
+    echo "  Name cannot be blank."
+    read -p "Your full name (e.g. Georgia Bear): " NAME
+done
 echo ""
+
+# Title
 read -p "Your title (e.g. Group Consultant - Client Services): " TITLE
+while [ -z "$TITLE" ]; do
+    echo "  Title cannot be blank."
+    read -p "Your title (e.g. Group Consultant - Client Services): " TITLE
+done
 echo ""
-read -p "Your email: " EMAIL
-echo ""
-read -p "Your phone number (leave blank to skip): " PHONE
-echo ""
-read -p "Your LinkedIn URL: " LINKEDIN
 
-# Build phone row
-PHONE_HTML=""
+# Email — must end with @solvdagency.com.au
+read -p "Your @solvdagency.com.au email: " EMAIL
+while true; do
+    if [ -z "$EMAIL" ]; then
+        echo "  Email cannot be blank."
+    elif [[ "$EMAIL" != *@solvdagency.com.au ]]; then
+        echo "  Email must end with @solvdagency.com.au"
+    else
+        break
+    fi
+    read -p "Your @solvdagency.com.au email: " EMAIL
+done
+echo ""
+
+# Phone — optional, must be Australian mobile (04XX XXX XXX) if provided
+read -p "Your mobile number, e.g. 0412345678 (leave blank to skip): " PHONE_RAW
+PHONE=""
+PHONE_TEL=""
+if [ -n "$PHONE_RAW" ]; then
+    while true; do
+        # Strip all non-digit characters
+        DIGITS=$(echo "$PHONE_RAW" | tr -dc '0-9')
+        if [ ${#DIGITS} -eq 10 ] && [[ "$DIGITS" == 04* ]]; then
+            # Format as 04XX XXX XXX
+            PHONE="${DIGITS:0:4} ${DIGITS:4:3} ${DIGITS:7:3}"
+            PHONE_TEL="$DIGITS"
+            break
+        else
+            echo "  Must be an Australian mobile number (10 digits starting with 04)."
+            read -p "Your mobile number, e.g. 0412345678 (leave blank to skip): " PHONE_RAW
+            if [ -z "$PHONE_RAW" ]; then
+                break
+            fi
+        fi
+    done
+fi
+echo ""
+
+# LinkedIn — default to Solvd company page
+echo "By default, your LinkedIn icon will link to the Solvd company page:"
+echo "  ${DEFAULT_LINKEDIN}"
+read -p "Would you like to use your own LinkedIn instead? (y/N): " USE_OWN_LINKEDIN
+LINKEDIN="$DEFAULT_LINKEDIN"
+if [[ "$USE_OWN_LINKEDIN" =~ ^[Yy]$ ]]; then
+    read -p "Your LinkedIn URL: " LINKEDIN
+    while [ -z "$LINKEDIN" ]; do
+        echo "  URL cannot be blank. Press Enter without 'y' to use the default."
+        read -p "Your LinkedIn URL: " LINKEDIN
+    done
+fi
+echo ""
+
+# -----------------------------------------------------------
+# Preview before generating
+# -----------------------------------------------------------
+echo "============================================"
+echo "   Please confirm your details:"
+echo "============================================"
+echo ""
+echo "  Name:     ${NAME}"
+echo "  Title:    ${TITLE}"
+echo "  Email:    ${EMAIL}"
 if [ -n "$PHONE" ]; then
-    PHONE_HTML="<br><a href=\"tel:${PHONE// /}\" style=\"color:#111111;text-decoration:none;\">${PHONE}</a>"
+    echo "  Phone:    ${PHONE}"
+else
+    echo "  Phone:    (none)"
+fi
+echo "  LinkedIn: ${LINKEDIN}"
+echo ""
+read -p "Look good? (Y/n): " CONFIRM
+if [[ "$CONFIRM" =~ ^[Nn]$ ]]; then
+    echo ""
+    echo "No worries — please run the script again to start over."
+    echo ""
+    echo "Press any key to close..."
+    read -n 1
+    exit 0
 fi
 
-# Output directory
+# -----------------------------------------------------------
+# Build phone row HTML
+# -----------------------------------------------------------
+PHONE_HTML=""
+if [ -n "$PHONE" ]; then
+    PHONE_HTML="<br><a href=\"tel:${PHONE_TEL}\" style=\"color:#111111;text-decoration:none;\">${PHONE}</a>"
+fi
+
+# -----------------------------------------------------------
+# Output
+# -----------------------------------------------------------
 OUTPUT_DIR="$HOME/Desktop"
 OUTPUT_FILE="${OUTPUT_DIR}/${NAME// /-}-signature.html"
 
 # Generate the HTML signature
 cat > "$OUTPUT_FILE" << SIGEOF
-<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;font-family:Arial,Helvetica,sans-serif;color:#111111;">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;font-family:Helvetica,Arial,sans-serif;color:#111111;">
   <tr>
-    <td style="padding:0 0 15px 0;">
+    <td style="padding:0 0 25px 0;">
       <a href="https://${WEBSITE}" style="text-decoration:none;">
         <img src="${LOGO_URL}" alt="Solvd." width="196" style="display:block;width:196px;height:auto;border:0;" />
       </a>
     </td>
   </tr>
   <tr>
-    <td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;letter-spacing:0;color:#111111;padding:0;line-height:1;">${NAME}</td>
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:0;color:#111111;padding:0 0 2px 0;line-height:1;">${NAME}</td>
   </tr>
   <tr>
-    <td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:500;letter-spacing:0;color:#111111;padding:2px 0 15px 0;line-height:1.3;">${TITLE}</td>
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;letter-spacing:0;color:#111111;padding:2px 0 15px 0;line-height:1.3;">${TITLE}</td>
   </tr>
   <tr>
-    <td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:500;color:#111111;padding:0;line-height:1.35;">
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;color:#111111;padding:0;line-height:1.35;">
       <a href="mailto:${EMAIL}" style="color:#111111;text-decoration:none;">${EMAIL}</a>${PHONE_HTML}
     </td>
   </tr>
   <tr>
     <td style="padding:15px 0 0 0;">
+      <a href="https://${WEBSITE}" style="font-family:'Courier New',Courier,monospace;font-size:13px;font-weight:700;color:#111111;text-decoration:underline;">solvdagency.com.au</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:19px 0 0 0;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
-          <td style="padding:0 1px 0 0;vertical-align:middle;">
-            <a href="https://${WEBSITE}" style="display:inline-block;border:1px solid #111111;color:#111111;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.3px;padding:4px 15px;border-radius:20px;line-height:1.4;text-decoration:none;">solvdagency.com.au</a>
+          <td style="padding:0 8px 0 0;vertical-align:middle;">
+            <img src="${COMMS_URL}" alt="Solvd. Comms" width="54" height="26" style="display:block;width:54px;height:26px;border:0;" />
           </td>
-          <td style="padding:0 1px 0 0;vertical-align:middle;">
-            <a href="${LINKEDIN}" style="text-decoration:none;">
-              <img src="${LINKEDIN_URL}" alt="LinkedIn" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
-            </a>
+          <td style="padding:0 8px 0 0;vertical-align:middle;">
+            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="54" height="26" style="display:block;width:54px;height:26px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
-            <a href="${INSTAGRAM_LINK}" style="text-decoration:none;">
-              <img src="${INSTAGRAM_URL}" alt="Instagram" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
+            <a href="${SHEPHERD_LINK}" style="text-decoration:none;">
+              <img src="${SHEPHERD_URL}" alt="Shepherd" width="96" height="11" style="display:block;width:96px;height:auto;border:0;" />
             </a>
           </td>
         </tr>
@@ -86,7 +186,37 @@ cat > "$OUTPUT_FILE" << SIGEOF
     </td>
   </tr>
   <tr>
-    <td style="font-family:'Courier New',Courier,monospace;font-size:8px;letter-spacing:0.5px;text-transform:uppercase;padding:8px 0 0 0;">
+    <td style="padding:19px 0 0 0;">
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+        <tr>
+          <td style="padding:0;vertical-align:middle;">
+            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">NTL</span>
+          </td>
+          <td style="padding:0;vertical-align:middle;">
+            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">SYD</span>
+          </td>
+          <td style="padding:0;vertical-align:middle;">
+            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">OOL</span>
+          </td>
+          <td style="padding:0 8px 0 0;vertical-align:middle;">
+            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">ZQN</span>
+          </td>
+          <td style="padding:0;vertical-align:middle;">
+            <a href="${INSTAGRAM_LINK}" style="text-decoration:none;">
+              <img src="${INSTAGRAM_ICON_URL}" alt="Instagram" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
+            </a>
+          </td>
+          <td style="padding:0;vertical-align:middle;">
+            <a href="${LINKEDIN}" style="text-decoration:none;">
+              <img src="${LINKEDIN_ICON_URL}" alt="LinkedIn" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:16px 0 0 0;">
       <a href="${DISCLAIMER_URL}" style="color:#999999;text-decoration:none;">DISCLAIMER</a>
     </td>
   </tr>
