@@ -32,33 +32,29 @@ DEFAULT_LINKEDIN="https://www.linkedin.com/company/solvd-agency"
 # -----------------------------------------------------------
 
 # Name
-read -p "Your full name (e.g. Georgia Bear): " NAME
+read -p "Your full name (e.g. Jane Smith): " NAME
 while [ -z "$NAME" ]; do
     echo "  Name cannot be blank."
-    read -p "Your full name (e.g. Georgia Bear): " NAME
+    read -p "Your full name (e.g. Jane Smith): " NAME
 done
 echo ""
 
 # Title
-read -p "Your title (e.g. Group Consultant - Client Services): " TITLE
+read -p "Your title (e.g. Senior Consultant): " TITLE
 while [ -z "$TITLE" ]; do
     echo "  Title cannot be blank."
-    read -p "Your title (e.g. Group Consultant - Client Services): " TITLE
+    read -p "Your title (e.g. Senior Consultant): " TITLE
 done
 echo ""
 
-# Email — must end with @solvdagency.com.au
-read -p "Your @solvdagency.com.au email: " EMAIL
-while true; do
-    if [ -z "$EMAIL" ]; then
-        echo "  Email cannot be blank."
-    elif [[ "$EMAIL" != *@solvdagency.com.au ]]; then
-        echo "  Email must end with @solvdagency.com.au"
-    else
-        break
-    fi
-    read -p "Your @solvdagency.com.au email: " EMAIL
+# Email — ask for prefix, auto-append domain
+read -p "Your email prefix (e.g. janes): " EMAIL_PREFIX
+while [ -z "$EMAIL_PREFIX" ]; do
+    echo "  Email prefix cannot be blank."
+    read -p "Your email prefix (e.g. janes): " EMAIL_PREFIX
 done
+EMAIL="${EMAIL_PREFIX}@solvdagency.com.au"
+echo "  → ${EMAIL}"
 echo ""
 
 # Phone — optional, must be Australian mobile (04XX XXX XXX) if provided
