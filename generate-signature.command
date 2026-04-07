@@ -14,11 +14,15 @@ echo ""
 # Asset URLs (GitHub-hosted)
 BASE_URL="https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG"
 LOGO_URL="${BASE_URL}/solvd%20logo%20black%402x.png"
-COMMS_URL="${BASE_URL}/solvd-comms%404x.png"
 CREATIVE_URL="${BASE_URL}/solvd-creative%404x.png"
 SHEPHERD_URL="${BASE_URL}/shepherd%404x.png"
 LINKEDIN_ICON_URL="${BASE_URL}/linkedin%404x.png"
 INSTAGRAM_ICON_URL="${BASE_URL}/instagram%404x.png"
+NTL_URL="${BASE_URL}/NTL%404x.png"
+SYD_URL="${BASE_URL}/SYD%404x.png"
+MCY_URL="${BASE_URL}/MCY%404x.png"
+ZQN_URL="${BASE_URL}/ZQN%404x.png"
+EMAIL_IMG_URL="${BASE_URL}/email%404x.png"
 
 # Fixed values
 WEBSITE="solvdagency.com.au"
@@ -147,19 +151,21 @@ cat > "$OUTPUT_FILE" << SIGEOF
     </td>
   </tr>
   <tr>
-    <td style="font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:0;color:#111111;padding:0 0 2px 0;line-height:1;">${NAME}</td>
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;letter-spacing:0;color:#111111;padding:0 0 2px 0;line-height:1;">${NAME}</td>
   </tr>
   <tr>
-    <td style="font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;letter-spacing:0;color:#111111;padding:2px 0 15px 0;line-height:1.3;">${TITLE}</td>
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:500;letter-spacing:0;color:#111111;padding:2px 0 15px 0;line-height:1.3;">${TITLE}</td>
   </tr>
   <tr>
-    <td style="font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;color:#111111;padding:0;line-height:1.35;">
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:500;color:#111111;padding:0;line-height:1.35;">
       <a href="mailto:${EMAIL}" style="color:#111111;text-decoration:none;">${EMAIL}</a>${PHONE_HTML}
     </td>
   </tr>
   <tr>
-    <td style="padding:15px 0 0 0;">
-      <a href="https://${WEBSITE}" style="font-family:'Courier New',Courier,monospace;font-size:13px;font-weight:700;color:#111111;text-decoration:underline;">solvdagency.com.au</a>
+    <td style="padding:20px 0 0 0;">
+      <a href="https://${WEBSITE}" style="text-decoration:none;">
+        <img src="${EMAIL_IMG_URL}" alt="solvdagency.com.au" width="155" height="15" style="display:block;width:155px;height:15px;border:0;" />
+      </a>
     </td>
   </tr>
   <tr>
@@ -167,14 +173,11 @@ cat > "$OUTPUT_FILE" << SIGEOF
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${COMMS_URL}" alt="Solvd. Comms" width="54" height="26" style="display:block;width:54px;height:26px;border:0;" />
-          </td>
-          <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="54" height="26" style="display:block;width:54px;height:26px;border:0;" />
+            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="61" height="29" style="display:block;width:61px;height:29px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${SHEPHERD_LINK}" style="text-decoration:none;">
-              <img src="${SHEPHERD_URL}" alt="Shepherd" width="96" height="11" style="display:block;width:96px;height:auto;border:0;" />
+              <img src="${SHEPHERD_URL}" alt="Shepherd" width="107" height="12" style="display:block;width:107px;height:auto;border:0;" />
             </a>
           </td>
         </tr>
@@ -186,16 +189,16 @@ cat > "$OUTPUT_FILE" << SIGEOF
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:0;vertical-align:middle;">
-            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">NTL</span>
+            <img src="${NTL_URL}" alt="NTL" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
-            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">SYD</span>
+            <img src="${SYD_URL}" alt="SYD" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
-            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">OOL</span>
+            <img src="${MCY_URL}" alt="MCY" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
           </td>
           <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <span style="display:inline-block;border:1px solid #111111;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.3px;color:#111111;padding:3px 10px;border-radius:20px;line-height:1.4;">ZQN</span>
+            <img src="${ZQN_URL}" alt="ZQN" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${INSTAGRAM_LINK}" style="text-decoration:none;">
@@ -212,7 +215,7 @@ cat > "$OUTPUT_FILE" << SIGEOF
     </td>
   </tr>
   <tr>
-    <td style="font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:16px 0 0 0;">
+    <td style="font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:16px 0 0 0;">
       <a href="${DISCLAIMER_URL}" style="color:#999999;text-decoration:none;">DISCLAIMER</a>
     </td>
   </tr>

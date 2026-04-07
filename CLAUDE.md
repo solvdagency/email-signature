@@ -18,11 +18,12 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 └── Assets/
     ├── PNG/                        ← tracked in git, hosted on GitHub
     │   ├── solvd logo black@2x.png
-    │   ├── solvd-comms@4x.png
     │   ├── solvd-creative@4x.png
     │   ├── shepherd@4x.png
     │   ├── instagram@4x.png
-    │   └── linkedin@4x.png
+    │   ├── linkedin@4x.png
+    │   ├── NTL@4x.png, SYD@4x.png, MCY@4x.png, ZQN@4x.png
+    │   └── email@4x.png
     └── source/                     ← gitignored, design reference only
         ├── fonts/
         ├── SVG/
@@ -46,21 +47,21 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 
 ## Fixed elements (hardcoded in template)
 - Solvd logo → solvdagency.com.au
-- Sub-brand logos: Solvd Comms, Solvd Creative, Shepherd
+- Sub-brand logos: Solvd Creative, Shepherd
 - Shepherd logo → shepherdagency.com.au
-- Location pills: NTL, SYD, OOL, ZQN
+- Location pills: NTL, SYD, MCY, ZQN (image-based, @4x for retina)
 - Social icons: Instagram (@solvd_agency), LinkedIn (user's choice or company default)
 - Disclaimer → solvdagency.com.au/disclaimer
 
 ## Design specs (v2)
-- **Name**: Helvetica/Arial, 14px, bold (700)
-- **Title/Email/Phone**: Helvetica/Arial, 13px, weight 500
-- **Website URL**: Courier New, 13px, bold, underlined
-- **Location pills**: Helvetica/Arial, 11px, weight 500, 1px solid border, border-radius 20px
-- **Disclaimer**: Helvetica/Arial, 9px, bold, uppercase, #999, letter-spacing 0.5px
-- **Sub-brand logos**: Solvd Comms/Creative 54×26px, Shepherd 96px wide (all @4x source)
-- **Social icons**: 24×24px (@4x source for retina)
-- **Spacing**: 25px under logo, 4px name-to-title, 15px title-to-email, 19px between sections, 16px before disclaimer
+- **Name**: Helvetica/Arial, 16px, bold (700)
+- **Title/Email/Phone**: Helvetica/Arial, 15px, weight 500
+- **Website URL**: Image-based (email@4x.png), displayed at 155×15px
+- **Location pills**: Image-based (@4x PNGs), displayed at 48×24px, touching (no gaps)
+- **Disclaimer**: Helvetica/Arial, 10px, bold, uppercase, #999, letter-spacing 0.5px
+- **Sub-brand logos**: Solvd Creative 61×29px, Shepherd 107px wide (all @4x source)
+- **Social icons**: 24×24px (@4x source for retina), touching (no gaps)
+- **Spacing**: 25px under logo, 4px name-to-title, 15px title-to-email, 20px above URL, 19px between sections, 16px before disclaimer
 - **Color**: #111 text, dark-mode safe
 - **Layout**: Table-based HTML with inline styles (email client compatible)
 
@@ -68,7 +69,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 PNG images hosted on GitHub at:
 `https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG/`
 
-Tracked assets (in `Assets/PNG/`): logo @2x, sub-brand logos @4x, social icons @4x.
+Tracked assets (in `Assets/PNG/`): logo @2x, sub-brand logos @4x, social icons @4x, location pills @4x, website URL @4x.
 Source files (fonts, SVGs, all logo resolutions) live in `Assets/source/` and are gitignored.
 
 ## Git
