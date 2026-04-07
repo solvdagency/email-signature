@@ -52,6 +52,7 @@ done
 echo ""
 
 # Email — ask for prefix, auto-append domain
+echo "Just the part before @solvdagency.com.au"
 read -p "Your email prefix (e.g. janes): " EMAIL_PREFIX
 while [ -z "$EMAIL_PREFIX" ]; do
     echo "  Email prefix cannot be blank."
@@ -173,11 +174,11 @@ cat > "$OUTPUT_FILE" << SIGEOF
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="61" height="29" style="display:block;width:61px;height:29px;border:0;" />
+            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="80" height="39" style="display:block;width:80px;height:39px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${SHEPHERD_LINK}" style="text-decoration:none;">
-              <img src="${SHEPHERD_URL}" alt="Shepherd" width="107" height="12" style="display:block;width:107px;height:auto;border:0;" />
+              <img src="${SHEPHERD_URL}" alt="Shepherd" width="141" height="15" style="display:block;width:141px;height:auto;border:0;" />
             </a>
           </td>
         </tr>

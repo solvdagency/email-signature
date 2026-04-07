@@ -61,7 +61,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 - **Website URL**: Image-based (email@4x.png), displayed at 155×15px
 - **Location pills**: Image-based (@4x PNGs), displayed at 48×24px, touching (no gaps)
 - **Disclaimer**: Helvetica/Arial, 10px, bold, uppercase, #999, letter-spacing 0.5px
-- **Sub-brand logos**: Solvd Creative 61×29px, Shepherd 107px wide (all @4x source)
+- **Sub-brand logos**: Solvd Creative 80×39px, Shepherd 141px wide (all @4x source)
 - **Social icons**: 24×24px (@4x source for retina), touching (no gaps)
 - **Spacing**: 25px under logo, 4px name-to-title, 15px title-to-email, 20px above URL, 19px between sections, 16px before disclaimer
 - **Color**: #111 text, dark-mode safe
