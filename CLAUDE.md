@@ -23,7 +23,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
     │   ├── shepherd@4x.png
     │   ├── instagram@4x.png
     │   ├── linkedin@4x.png
-    │   ├── NTL@4x.png, SYD@4x.png, MCY@4x.png, ZQN@4x.png
+    │   ├── locations@2x.gif           ← animated GIF cycling through cities
     │   ├── email@4x.png
     │   └── unused/                 ← extra resolutions & retired assets
     └── source/                     ← gitignored, design reference only
@@ -51,7 +51,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 - Solvd logo → solvdagency.com.au
 - Sub-brand logos: Solvd Creative, Shepherd
 - Shepherd logo → shepherdagency.com.au
-- Location pills: NTL, SYD, MCY, ZQN (image-based, @4x for retina)
+- Locations: Animated GIF cycling through cities (locations@2x.gif)
 - Social icons: Instagram (@solvd_agency), LinkedIn (user's choice or company default)
 - Disclaimer → solvdagency.com.au/disclaimer
 
@@ -59,9 +59,9 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 - **Name**: Helvetica/Arial, 16px, bold (700)
 - **Title/Email/Phone**: Helvetica/Arial, 15px, weight 500
 - **Website URL**: Image-based (email@4x.png), displayed at 155×15px
-- **Location pills**: Image-based (@4x PNGs), displayed at 48×24px, touching (no gaps)
+- **Locations**: Animated GIF (locations@2x.gif), displayed at 135×24px
 - **Disclaimer**: Helvetica/Arial, 10px, bold, uppercase, #999, letter-spacing 0.5px
-- **Sub-brand logos**: Solvd Creative 80×39px, Shepherd 141px wide (all @4x source)
+- **Sub-brand logos**: Solvd Creative 80×39px, Shepherd 141px wide (all @4x source), 16px gap between them
 - **Social icons**: 24×24px (@4x source for retina), touching (no gaps)
 - **Spacing**: 25px under logo, 4px name-to-title, 15px title-to-email, 20px above URL, 19px between sections, 16px before disclaimer
 - **Color**: #111 text, dark-mode safe
@@ -71,7 +71,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 PNG images hosted on GitHub at:
 `https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG/`
 
-Tracked assets (in `Assets/PNG/`): logo @2x, sub-brand logos @4x, social icons @4x, location pills @4x, website URL @4x.
+Tracked assets (in `Assets/PNG/`): logo @2x, sub-brand logos @4x, social icons @4x, locations GIF @2x, website URL @4x.
 Source files (fonts, SVGs, all logo resolutions) live in `Assets/source/` and are gitignored.
 
 ## Maintenance
@@ -84,7 +84,7 @@ Source files (fonts, SVGs, all logo resolutions) live in `Assets/source/` and ar
 - **Filenames with spaces** — `solvd logo black@2x.png` requires `%20` URL-encoding in the script (see `LOGO_URL` variable)
 - **GitHub raw URL dependency** — all images load from `raw.githubusercontent.com`; if the repo is private or renamed, signatures break
 - **Email client rendering** — the template uses table-based HTML with inline styles; CSS classes, `<div>`, flexbox, and grid will not render in most email clients (Outlook, Gmail)
-- **Dark mode** — text is `#111` not `#000` for softer rendering; images with transparent backgrounds may need testing against dark backgrounds
+- **Dark mode** — text is `#111` not `#000` for softer rendering; images use `filter:invert(1)` via CSS class `sig-dark-invert`. The locations GIF needs a transparent background for clean dark mode invert — if it has a solid white background, invert creates a black block
 
 ## Git
 - Repo: `solvdagency/email-signature` on GitHub

@@ -18,10 +18,7 @@ CREATIVE_URL="${BASE_URL}/solvd-creative%404x.png"
 SHEPHERD_URL="${BASE_URL}/shepherd%404x.png"
 LINKEDIN_ICON_URL="${BASE_URL}/linkedin%404x.png"
 INSTAGRAM_ICON_URL="${BASE_URL}/instagram%404x.png"
-NTL_URL="${BASE_URL}/NTL%404x.png"
-SYD_URL="${BASE_URL}/SYD%404x.png"
-MCY_URL="${BASE_URL}/MCY%404x.png"
-ZQN_URL="${BASE_URL}/ZQN%404x.png"
+LOCATIONS_URL="${BASE_URL}/locations%402x.gif"
 EMAIL_IMG_URL="${BASE_URL}/email%404x.png"
 
 # Fixed values
@@ -143,11 +140,17 @@ OUTPUT_FILE="${OUTPUT_DIR}/${NAME// /-}-signature.html"
 
 # Generate the HTML signature
 cat > "$OUTPUT_FILE" << SIGEOF
+<style>
+@media (prefers-color-scheme: dark) {
+  .sig-dark-invert { filter: invert(1) !important; }
+  .sig-dark-text a { color: #eeeeee !important; }
+}
+</style>
 <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;font-family:Helvetica,Arial,sans-serif;color:#111111;">
   <tr>
     <td style="padding:0 0 25px 0;">
       <a href="https://${WEBSITE}" style="text-decoration:none;">
-        <img src="${LOGO_URL}" alt="Solvd." width="196" style="display:block;width:196px;height:auto;border:0;" />
+        <img src="${LOGO_URL}" alt="Solvd." width="196" class="sig-dark-invert" style="display:block;width:196px;height:auto;border:0;" />
       </a>
     </td>
   </tr>
@@ -165,7 +168,7 @@ cat > "$OUTPUT_FILE" << SIGEOF
   <tr>
     <td style="padding:20px 0 0 0;">
       <a href="https://${WEBSITE}" style="text-decoration:none;">
-        <img src="${EMAIL_IMG_URL}" alt="solvdagency.com.au" width="155" height="15" style="display:block;width:155px;height:15px;border:0;" />
+        <img src="${EMAIL_IMG_URL}" alt="solvdagency.com.au" width="155" height="15" class="sig-dark-invert" style="display:block;width:155px;height:15px;border:0;" />
       </a>
     </td>
   </tr>
@@ -173,12 +176,12 @@ cat > "$OUTPUT_FILE" << SIGEOF
     <td style="padding:19px 0 0 0;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
-          <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="80" height="39" style="display:block;width:80px;height:39px;border:0;" />
+          <td style="padding:0 16px 0 0;vertical-align:middle;">
+            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="80" height="39" class="sig-dark-invert" style="display:block;width:80px;height:39px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${SHEPHERD_LINK}" style="text-decoration:none;">
-              <img src="${SHEPHERD_URL}" alt="Shepherd" width="141" height="15" style="display:block;width:141px;height:auto;border:0;" />
+              <img src="${SHEPHERD_URL}" alt="Shepherd" width="141" height="15" class="sig-dark-invert" style="display:block;width:141px;height:auto;border:0;" />
             </a>
           </td>
         </tr>
@@ -189,26 +192,17 @@ cat > "$OUTPUT_FILE" << SIGEOF
     <td style="padding:19px 0 0 0;">
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
-          <td style="padding:0;vertical-align:middle;">
-            <img src="${NTL_URL}" alt="NTL" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
-          </td>
-          <td style="padding:0;vertical-align:middle;">
-            <img src="${SYD_URL}" alt="SYD" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
-          </td>
-          <td style="padding:0;vertical-align:middle;">
-            <img src="${MCY_URL}" alt="MCY" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
-          </td>
           <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${ZQN_URL}" alt="ZQN" width="48" height="24" style="display:block;width:48px;height:24px;border:0;" />
+            <img src="${LOCATIONS_URL}" alt="Newcastle, Sydney, Mackay, Queenstown" width="135" height="24" class="sig-dark-invert" style="display:block;width:135px;height:24px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${INSTAGRAM_LINK}" style="text-decoration:none;">
-              <img src="${INSTAGRAM_ICON_URL}" alt="Instagram" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
+              <img src="${INSTAGRAM_ICON_URL}" alt="Instagram" width="24" height="24" class="sig-dark-invert" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
             </a>
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${LINKEDIN}" style="text-decoration:none;">
-              <img src="${LINKEDIN_ICON_URL}" alt="LinkedIn" width="24" height="24" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
+              <img src="${LINKEDIN_ICON_URL}" alt="LinkedIn" width="24" height="24" class="sig-dark-invert" style="display:block;width:24px;height:24px;border:0;border-radius:12px;" />
             </a>
           </td>
         </tr>
