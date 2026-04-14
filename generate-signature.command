@@ -11,8 +11,8 @@ echo "   Solvd Email Signature Generator"
 echo "============================================"
 echo ""
 
-# Asset URLs (GitHub-hosted)
-BASE_URL="https://raw.githubusercontent.com/solvdagency/email-signature/main/Assets/PNG"
+# Asset URLs (GitHub Pages-hosted for reliable email client caching)
+BASE_URL="https://solvdagency.github.io/email-signature/Assets/PNG"
 LOGO_URL="${BASE_URL}/solvd%20logo%20black%402x.png"
 CREATIVE_URL="${BASE_URL}/solvd-creative%404x.png"
 SHEPHERD_URL="${BASE_URL}/shepherd%404x.png"
@@ -177,7 +177,9 @@ cat > "$OUTPUT_FILE" << SIGEOF
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:0 16px 0 0;vertical-align:middle;">
-            <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="80" height="39" class="sig-dark-invert" style="display:block;width:80px;height:39px;border:0;" />
+            <a href="https://${WEBSITE}" style="text-decoration:none;">
+              <img src="${CREATIVE_URL}" alt="Solvd. Creative" width="80" height="39" class="sig-dark-invert" style="display:block;width:80px;height:39px;border:0;" />
+            </a>
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${SHEPHERD_LINK}" style="text-decoration:none;">
