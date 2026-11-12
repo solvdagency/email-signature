@@ -187,7 +187,7 @@ cat > "$OUTPUT_FILE" << SIGEOF
       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
         <tr>
           <td style="padding:0 8px 0 0;vertical-align:middle;">
-            <img src="${LOCATIONS_URL}" alt="Newcastle, Sydney, Mackay, Queenstown" width="135" height="24" class="sig-dark-invert" style="display:block;width:135px;height:24px;border:0;" />
+            <img src="${LOCATIONS_URL}" alt="Newcastle, Sydney, Sunshine Coast, Queenstown" width="135" height="24" class="sig-dark-invert" style="display:block;width:135px;height:24px;border:0;" />
           </td>
           <td style="padding:0;vertical-align:middle;">
             <a href="${INSTAGRAM_LINK}" style="text-decoration:none;">
