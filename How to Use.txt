@@ -21,7 +21,8 @@ A Terminal window will open and ask for your details:
 - Full name — type your name, press Enter
 - Title — e.g. "Group Consultant - Client Services", press Enter
 - Email — must be your @solvdagency.com.au address, press Enter
-- Phone — your mobile number starting with 04 (or leave blank to skip), press Enter
+- Mobile — your mobile number starting with 04 (required), press Enter
+  (the Solvd office number is added automatically)
 - LinkedIn — by default this links to the Solvd company page.
   Type 'y' if you want to use your personal LinkedIn URL instead.
 

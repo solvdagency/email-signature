@@ -23,6 +23,8 @@ EMAIL_IMG_URL="${BASE_URL}/email%404x.png"
 
 # Fixed values
 WEBSITE="solvdagency.com.au"
+OFFICE_PHONE="(02) 8527 8441"
+OFFICE_TEL="+61285278441"
 INSTAGRAM_LINK="https://www.instagram.com/solvd_agency/"
 SHEPHERD_LINK="https://www.shepherdagency.com.au/"
 DISCLAIMER_URL="https://${WEBSITE}/disclaimer"
@@ -59,28 +61,20 @@ EMAIL="${EMAIL_PREFIX}@solvdagency.com.au"
 echo "  → ${EMAIL}"
 echo ""
 
-# Phone — optional, must be Australian mobile (04XX XXX XXX) if provided
-read -p "Your mobile number, e.g. 0412345678 (leave blank to skip): " PHONE_RAW
-PHONE=""
-PHONE_TEL=""
-if [ -n "$PHONE_RAW" ]; then
-    while true; do
-        # Strip all non-digit characters
-        DIGITS=$(echo "$PHONE_RAW" | tr -dc '0-9')
-        if [ ${#DIGITS} -eq 10 ] && [[ "$DIGITS" == 04* ]]; then
-            # Format as 04XX XXX XXX
-            PHONE="${DIGITS:0:4} ${DIGITS:4:3} ${DIGITS:7:3}"
-            PHONE_TEL="$DIGITS"
-            break
-        else
-            echo "  Must be an Australian mobile number (10 digits starting with 04)."
-            read -p "Your mobile number, e.g. 0412345678 (leave blank to skip): " PHONE_RAW
-            if [ -z "$PHONE_RAW" ]; then
-                break
-            fi
-        fi
-    done
-fi
+# Mobile — required, must be Australian mobile (04XX XXX XXX)
+read -p "Your mobile number, e.g. 0412345678: " PHONE_RAW
+while true; do
+    # Strip all non-digit characters
+    DIGITS=$(echo "$PHONE_RAW" | tr -dc '0-9')
+    if [ ${#DIGITS} -eq 10 ] && [[ "$DIGITS" == 04* ]]; then
+        # Format as 04XX XXX XXX
+        PHONE="${DIGITS:0:4} ${DIGITS:4:3} ${DIGITS:7:3}"
+        PHONE_TEL="$DIGITS"
+        break
+    fi
+    echo "  Must be an Australian mobile number (10 digits starting with 04)."
+    read -p "Your mobile number, e.g. 0412345678: " PHONE_RAW
+done
 echo ""
 
 # LinkedIn — default to Solvd company page
@@ -107,11 +101,7 @@ echo ""
 echo "  Name:     ${NAME}"
 echo "  Title:    ${TITLE}"
 echo "  Email:    ${EMAIL}"
-if [ -n "$PHONE" ]; then
-    echo "  Phone:    ${PHONE}"
-else
-    echo "  Phone:    (none)"
-fi
+echo "  Mobile:   ${PHONE}"
 echo "  LinkedIn: ${LINKEDIN}"
 echo ""
 read -p "Look good? (Y/n): " CONFIRM
@@ -125,12 +115,14 @@ if [[ "$CONFIRM" =~ ^[Nn]$ ]]; then
 fi
 
 # -----------------------------------------------------------
-# Build phone row HTML
+# Build phone rows HTML: P (office) then M (mobile), labels in a
+# fixed-width column so the numbers line up
 # -----------------------------------------------------------
-PHONE_HTML=""
-if [ -n "$PHONE" ]; then
-    PHONE_HTML="<br><a href=\"tel:${PHONE_TEL}\" style=\"color:#111111;text-decoration:none;\">${PHONE}</a>"
-fi
+CONTACT_STYLE="font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:500;color:#111111;line-height:1.35;"
+phone_row() {
+    echo "<tr><td style=\"${CONTACT_STYLE}font-weight:700;width:20px;padding:0;vertical-align:top;\">$1</td><td style=\"${CONTACT_STYLE}padding:0;\"><a href=\"tel:$2\" style=\"color:#111111;text-decoration:none;\">$3</a></td></tr>"
+}
+PHONE_HTML="<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse;\">$(phone_row P "$OFFICE_TEL" "$OFFICE_PHONE")$(phone_row M "$PHONE_TEL" "$PHONE")</table>"
 
 # -----------------------------------------------------------
 # Output

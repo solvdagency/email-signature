@@ -44,11 +44,12 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 - **Name** — full name
 - **Title** — e.g. "Group Consultant - Client Services"
 - **Email** — must be @solvdagency.com.au (validated)
-- **Phone** — optional, must be Australian mobile 04XX XXX XXX (validated)
+- **Mobile** — required, must be Australian mobile 04XX XXX XXX (validated)
 - **LinkedIn** — defaults to Solvd company page, can override with personal URL
 
 ## Fixed elements (hardcoded in template)
 - Solvd logo → solvdagency.com.au
+- Office phone: (02) 8527 8441, shown as "P" above the "M" mobile line (Nov 2026)
 - Sub-brand logos: Solvd Creative, Shepherd
 - Shepherd logo → shepherdagency.com.au
 - Locations: Animated GIF cycling through cities (locations@2x.gif)
@@ -58,6 +59,7 @@ A double-clickable Mac shell script that generates HTML email signatures for Sol
 ## Design specs (v2)
 - **Name**: Helvetica/Arial, 16px, bold (700)
 - **Title/Email/Phone**: Helvetica/Arial, 15px, weight 500
+- **Phone labels**: "P" and "M" bold (700) in a 20px column so the numbers line up
 - **Website URL**: Image-based (email@4x.png), displayed at 155×15px
 - **Locations**: Animated GIF (locations@2x.gif), displayed at 135×24px
 - **Disclaimer**: Helvetica/Arial, 10px, bold, uppercase, #999, letter-spacing 0.5px
